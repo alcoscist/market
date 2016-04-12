@@ -1,0 +1,23 @@
+<% # -*- coding: UTF-8 -*- %>
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+<h2>Твоя карзина, браток</h2>
+<table>
+  <% @cart.line_items.each do |item| %>
+      <tr>
+        <td><%= item.quantity %> &times;</td>
+        <td><%= item.good.title %></td>
+        <td class="item_price"><%= number_to_currency(item.total_price) %></td>
+      </tr>
+  <% end %>
+  <tr class="total_line">
+    <td colspan="2">Всё</td>
+    <td class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
+  </tr>
+</table>
+
+<%= button_to 'выпотрошить карзину', @cart, method: :delete, data: { confirm: 'подумай, братиш, 2 раза' } %>
+
+<%= link_to 'Edit', edit_cart_path(@cart) %> |
+<%= link_to 'Back', carts_path %>

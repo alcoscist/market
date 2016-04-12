@@ -12,6 +12,7 @@
         <%= sanitize(good.description) %>
         <div class="price_line">
           <span class="price"><%= number_to_currency(good.price) %></span>
+          <%= button_to 'въебабулить', line_items_path(good_id: good) %>
         </div>
       </div>
     <% end %>
